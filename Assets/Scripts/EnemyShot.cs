@@ -21,7 +21,7 @@ public class EnemyShot : MonoBehaviour
     // Update is called once per frame
     IEnumerator InstanceBullet()
     {
-        while (DistanceEnemyPlayer() < 8)
+        while (DistanceEnemyPlayer() <= 7)
         {
             Instantiate(prefab, targetSpawnBullet, Quaternion.identity);
             yield return new WaitForSeconds(1);
@@ -31,7 +31,7 @@ public class EnemyShot : MonoBehaviour
     float DistanceEnemyPlayer()
     {
             float dist = Vector3.Distance(player.position, transform.position);
-            //Debug.Log("Distance to other: " + dist);
+            Debug.Log("Distance to other: " + dist);
             return dist;
     }
 }
