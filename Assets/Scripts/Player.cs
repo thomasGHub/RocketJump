@@ -30,21 +30,22 @@ public class Player : MonoBehaviour
         if (!_isGrounded)
         {
             _jump = 0.33f;
-            velocity.y += gravity/speed * Time.deltaTime; //division par speed pour compenser la multiplication dans le controller move
+            velocity.y += gravity / speed * Time.deltaTime; //division par speed pour compenser la multiplication dans le controller move
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
-            velocity = new Vector3(0f, -gravity/speed, 0f);//division par speed pour compenser la multiplication dans le controller move
+            velocity = new Vector3(0f, -gravity / speed, 0f);//division par speed pour compenser la multiplication dans le controller move
         }
         else
         {
             _jump = 1f;
             velocity = new Vector3(0f, 0f, 0f);
-            
+
         }
-        //Debug.Log(velocity);
+
         _dir = Input.GetAxis("Vertical") * transform.forward + Input.GetAxis("Horizontal") * transform.right + velocity * _jumpPower;
         _controller.Move(_dir * speed * Time.deltaTime);
+
 
     }
 
