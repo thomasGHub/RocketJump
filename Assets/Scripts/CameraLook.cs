@@ -5,11 +5,9 @@ using UnityEngine;
 public class CameraLook : MonoBehaviour
 {
     [SerializeField] private Transform _player;
-    [SerializeField] private float _speed = 2.0f;
     [SerializeField] private float _sensitivity = 200f;
 
     private float _rotationX = 0.0f;
-    private float _rotationY = 0.0f;
     private float _mouseX = 0.0f;
     private float _mouseY = 0.0f;
     // Start is called before the first frame update

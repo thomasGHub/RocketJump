@@ -30,8 +30,7 @@ public class GunFire : MonoBehaviour
 
         if (Input.GetAxis("Fire1") == 1 && _timeLastFired + _shootDelay  <= Time.time)
         {
-            Fire();
-     
+            Fire(); 
         }
     }
 

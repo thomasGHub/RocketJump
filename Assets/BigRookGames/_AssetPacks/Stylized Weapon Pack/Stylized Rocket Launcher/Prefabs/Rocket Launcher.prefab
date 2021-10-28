@@ -169,16 +169,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4490302565791019165}
-  m_LocalRotation: {x: -0.70598865, y: 0.03974742, z: -0.06502625, w: 0.7041107}
-  m_LocalPosition: {x: -44.95, y: 2.285, z: 13.303247}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 5348409053531786382}
   - {fileID: 3643882368892340087}
   - {fileID: 3643882368974582390}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -98.499, y: -90, z: -632.054}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &195002086415459714
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -436,4 +436,3 @@ MonoBehaviour:
   _muzzlePrefab: {fileID: 3643882368892340086}
   _muzzleTransform: {fileID: 3643882368892340087}
   _projectilePrefab: {fileID: 4092872357349286730, guid: 5269dd52fdc50ea429c6b6a65cc1161e, type: 3}
-  projectileToDisableOnFire: {fileID: 0}

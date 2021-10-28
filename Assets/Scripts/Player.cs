@@ -4,49 +4,82 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 2.0f;
-    [SerializeField] private float _jumpPower = 1.0f;
-    [SerializeField] private CharacterController _controller;
-    [SerializeField] private LayerMask groundMask;
-    [SerializeField] private Transform _collider;
-    private float _jump = 0.5f;
+    [SerializeField] private float _speed = 2f;
+    [SerializeField] private float _jumpHeight = 1.25f;
 
-    private float groundDistance = 0.4f;
-    private float gravity = -9.81f;
-    private Vector3 velocity = new Vector3(0f, 0f, 0f);
+
+    [System.NonSerialized] public static Rigidbody _rigidbody;
+    private float _jump = 1f;
     private Vector3 _dir;
+    [System.NonSerialized] public static Vector3 explosionForce;
+    
 
     private bool _isGrounded;
     // Start is called before the first frame update
     void Start()
     {
-
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        _isGrounded = Physics.CheckSphere(_collider.position, groundDistance, groundMask);
+        /*_isGrounded = Physics.CheckSphere(_collider.position, groundDistance, groundMask);
         if (!_isGrounded)
         {
             _jump = 0.33f;
-            velocity.y += gravity / speed * Time.deltaTime; //division par speed pour compenser la multiplication dans le controller move
+            _velocity.y += gravity / speed * Time.deltaTime; //division par speed pour compenser la multiplication dans le controller move
         }
-        else if (Input.GetKeyDown(KeyCode.Space))
+        else if (Input.GetAxis("Jump") == 1)
         {
-            velocity = new Vector3(0f, -gravity / speed, 0f);//division par speed pour compenser la multiplication dans le controller move
+            _velocity.y = -gravity / speed;//division par speed pour compenser la multiplication dans le controller move
         }
         else
         {
             _jump = 1f;
-            velocity = new Vector3(0f, 0f, 0f);
+            _velocity = new Vector3(0f, 0f, 0f);
 
         }
 
-        _dir = Input.GetAxis("Vertical") * transform.forward + Input.GetAxis("Horizontal") * transform.right + velocity * _jumpPower;
-        _controller.Move(_dir * speed * Time.deltaTime);
+        _dir = (Input.GetAxis("Vertical") * transform.forward + Input.GetAxis("Horizontal") * transform.right) * _jump + _velocity * _jumpPower;
+        _controller.Move((_dir * speed + explosionForce) * Time.deltaTime);
 
+        if (explosionForce != new Vector3(0f,0f,0f))
+        {
+            Debug.Log(explosionForce);
+        }
 
+        explosionForce = new Vector3(0f, 0f, 0f);*/
+
+        if(Input.GetAxis("Jump") == 1 && _jump == 1)
+        {
+            _rigidbody.velocity = new Vector3(0f, (float)System.Math.Sqrt(_jumpHeight * -2 * Physics.gravity.y), 0f);
+        }
+
+        _dir = (Input.GetAxis("Vertical") * transform.forward + Input.GetAxis("Horizontal") * transform.right);
+    }
+
+    private void FixedUpdate()
+    {
+        _rigidbody.MovePosition(_dir * _speed * _jump * Time.deltaTime + transform.position);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            Debug.Log("Collision Enter");
+            _jump = 1f;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            Debug.Log("Collision Exit");
+            _jump = 0.33f;
+        }
     }
 
 
