@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Code by Bryan
 public class GunFire : MonoBehaviour
 {
     [SerializeField] private float _shootDelay = 0.5f;

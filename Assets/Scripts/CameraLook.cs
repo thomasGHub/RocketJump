@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Code by Bryan
+
 public class CameraLook : MonoBehaviour
 {
     [SerializeField] private Transform _player;

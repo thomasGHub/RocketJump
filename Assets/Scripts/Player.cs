@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+//Code by Bryan
 public class Player : MonoBehaviour
 {
     [SerializeField] private float _speed = 2f;
