@@ -64,6 +64,11 @@ public class Player : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single); // en attendant le système de sauvegarde et retour au Menu
     }
 
+    public static void endTuto()
+    {
+        SceneManager.LoadScene("Level1");
+    }
+
     public static void dead()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
