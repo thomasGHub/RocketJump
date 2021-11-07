@@ -56,10 +56,6 @@ public class ProjectileController : MonoBehaviour
                 Player._rigidbody.AddExplosionForce(_explosionPower, transform.position, (float)System.Math.Sqrt(_minDistance), 0.0f, ForceMode.Force);
             }
             
-            ////// Destruction de l'instance ////////////
-            /*_rocketLauncherMissile.enabled = false;
-            _rocketParticle.Stop();
-            GetComponent<SphereCollider>().enabled = false;*/
             Destroy(gameObject, 1f);
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Explode"))
@@ -73,10 +69,7 @@ public class ProjectileController : MonoBehaviour
                 if (rb != null)
                     rb.AddExplosionForce(_explosionPower, transform.position, 2, 0.0f, ForceMode.Force);
             }
-            
-            _rocketLauncherMissile.enabled = false;
-            _rocketParticle.Stop();
-            GetComponent<SphereCollider>().enabled = false;
+
             Destroy(gameObject, 1f);
 
         }

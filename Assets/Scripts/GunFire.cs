@@ -15,9 +15,6 @@ public class GunFire : MonoBehaviour
 
     [Tooltip("The projectile gameobject to instantiate each time the weapon is fired.")]
     [SerializeField] private GameObject _projectilePrefab;
-    [Tooltip("Sometimes a mesh will want to be disabled on fire. For example: when a rocket is fired, we instantiate a new rocket, and disable" +
-            " the visible rocket attached to the rocket launcher")]
-    //[SerializeField] private GameObject projectileToDisableOnFire;
     private float _timeLastFired;
     // Start is called before the first frame update
     void Start()
