@@ -9,7 +9,7 @@ public class ProjectileController : MonoBehaviour
     [SerializeField] private MeshRenderer _rocketLauncherMissile;
     [SerializeField] private GameObject _rocketExplosion;
     [SerializeField] private ParticleSystem _rocketParticle;
-    [SerializeField] private GameObject _player;
+
 
     [Tooltip("la distance minimal pour être affecté par l'explosion")]
     [SerializeField] private float _minDistance = 1f;
@@ -24,7 +24,6 @@ public class ProjectileController : MonoBehaviour
     }
     void Start()
     {
-        //_playerRigidbody = _player.GetComponent<Rigidbody>();
         _rigidbody = GetComponent<Rigidbody>();
         _dir = transform.forward;
         _minDistance *= _minDistance; //mise au carré pour optimiser la comparaison de la distance dans le futur 
@@ -33,7 +32,10 @@ public class ProjectileController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(transform.position.x < -500 || transform.position.x >500 || transform.position.y < -500 || transform.position.y > 500|| transform.position.y < -100 || transform.position.y > 500)
+        {
+            Destroy(this);
+        }
     }
 
     private void FixedUpdate()
@@ -44,24 +46,38 @@ public class ProjectileController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Player._rigidbody.MovePosition(new Vector3(0f, 0f, 0f));
         if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             Instantiate(_rocketExplosion, transform.position, Quaternion.identity);
 
-            if ((transform.position - _player.transform.position).sqrMagnitude < _minDistance)
+            if ((transform.position - Player._transform.position).sqrMagnitude < _minDistance)
             {
-                //Player.explosionForce = (transform.position - _player.transform.position) * _explosionPower / (transform.position - _player.transform.position).magnitude;
-                
                 Player._rigidbody.AddExplosionForce(_explosionPower, transform.position, (float)System.Math.Sqrt(_minDistance), 0.0f, ForceMode.Force);
-
             }
-
+            
             ////// Destruction de l'instance ////////////
+            /*_rocketLauncherMissile.enabled = false;
+            _rocketParticle.Stop();
+            GetComponent<SphereCollider>().enabled = false;*/
+            Destroy(gameObject, 1f);
+        }
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Explode"))
+        {
+            Instantiate(_rocketExplosion, transform.position, Quaternion.identity);
+            Collider[] colliders = Physics.OverlapSphere(transform.position, 2);
+            foreach (Collider hit in colliders)
+            {
+                Rigidbody rb = hit.GetComponent<Rigidbody>();
+
+                if (rb != null)
+                    rb.AddExplosionForce(_explosionPower, transform.position, 2, 0.0f, ForceMode.Force);
+            }
+            
             _rocketLauncherMissile.enabled = false;
             _rocketParticle.Stop();
             GetComponent<SphereCollider>().enabled = false;
-            Destroy(gameObject, 2f);
+            Destroy(gameObject, 1f);
+
         }
     }
 }

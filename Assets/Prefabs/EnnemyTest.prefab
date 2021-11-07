@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5024990425377906048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.52, y: 3.66, z: -2.98}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5024990425377931740}
@@ -70,7 +70,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &5024990425984629849
 BoxCollider:
@@ -109,6 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cc1995bf0be9546afc4e65468e6176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mindistance: 15
   prefab: {fileID: 4039213336952778240, guid: d14f772064992ca4884d43fd7189abe7, type: 3}
   player: {fileID: 0}
 --- !u!1 &5024990425377906050

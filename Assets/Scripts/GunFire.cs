@@ -36,10 +36,10 @@ public class GunFire : MonoBehaviour
 
     private void Fire()
     {
-
         _timeLastFired = Time.time;
-        Instantiate(_muzzlePrefab, _muzzleTransform); //Muzzle flash
-        Instantiate(_projectilePrefab, _muzzleTransform.position, _muzzleTransform.rotation, transform); 
+        var temp = Instantiate(_muzzlePrefab, _muzzleTransform); //Muzzle flash
+        Instantiate(_projectilePrefab, _muzzleTransform.position, _muzzleTransform.rotation, transform);
+        Destroy(temp, 1f);
 
     }
 }
