@@ -229,10 +229,9 @@ MonoBehaviour:
   _rocketLauncherMissile: {fileID: 7375337548765109680}
   _rocketExplosion: {fileID: 1764654978243476, guid: a98b15aa948478849b54661e4d9a317e, type: 3}
   _rocketParticle: {fileID: 4361980691020798282}
-  _player: {fileID: 1966824930446435883, guid: f3da7458c25487a40af3c712e7df74f8, type: 3}
+  _player: {fileID: 7629612947251082455, guid: f3da7458c25487a40af3c712e7df74f8, type: 3}
   _minDistance: 10
-  _explosionPower: 500
-  _playerRigidbody: {fileID: 7703509388221320387, guid: f3da7458c25487a40af3c712e7df74f8, type: 3}
+  _explosionPower: 350
 --- !u!135 &7870026953430193671
 SphereCollider:
   m_ObjectHideFlags: 0

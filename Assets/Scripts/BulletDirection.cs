@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class BulletDirection : MonoBehaviour
 {
-
-    public GameObject target;
+    private GameObject target;
     public float speed = 6f;
     private Vector3 targetPoint;
     private float offsettY = 1.5f;
@@ -29,8 +28,21 @@ public class BulletDirection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.x < -500 || transform.position.x > 500 || transform.position.y < -500 || transform.position.y > 500 || transform.position.y < -100 || transform.position.y > 500)
+            Destroy(this);
+            
         //float step = speed * Time.deltaTime;
         //transform.position = Vector3.MoveTowards(transform.position, targetPoint, step);
         _rigidbody.MovePosition(_dir * speed * Time.deltaTime + transform.position);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            Player.dead();
+        }
+        else
+            Destroy(this);
     }
 }

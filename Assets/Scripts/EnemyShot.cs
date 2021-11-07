@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyShot : MonoBehaviour
 {
+    [SerializeField] private float _mindistance;
     public GameObject prefab;
     public Transform player;
     private Vector3 targetSpawnBullet;
@@ -14,7 +15,7 @@ public class EnemyShot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        targetSpawnBullet = new Vector3(transform.position.x+offsetX, transform.position.y + offsetY, transform.position.z);
+        targetSpawnBullet = new Vector3(transform.position.x + offsetX, transform.position.y + offsetY, transform.position.z);
     }
 
     void Update()
@@ -25,13 +26,17 @@ public class EnemyShot : MonoBehaviour
             InstanceBullet();
             timerShoot = 2f;
         }
-  
+
+        if(transform.position.y < -50)
+            Destroy(this);
+
+
     }
 
     // Update is called once per frame
     void InstanceBullet()
     {
-        if (DistanceEnemyPlayer() <= 15)
+        if (DistanceEnemyPlayer() <= _mindistance)
         {
             Instantiate(prefab, targetSpawnBullet, Quaternion.identity);
         }
@@ -39,8 +44,7 @@ public class EnemyShot : MonoBehaviour
 
     float DistanceEnemyPlayer()
     {
-            float dist = Vector3.Distance(player.position, transform.position);
-            Debug.Log("Distance to other: " + dist);
-            return dist;
+        float dist = Vector3.Distance(player.position, transform.position);
+        return dist;
     }
 }
