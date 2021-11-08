@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetAxis("Cancel") == 1)
+            SceneManager.LoadScene("LevelChoice");
         if(Input.GetAxis("Jump") == 1 && _jump == 1)
         {
             _rigidbody.velocity = new Vector3(0f, (float)System.Math.Sqrt(_jumpHeight * -2 * Physics.gravity.y), 0f);

@@ -18,6 +18,7 @@ public static class Save
         levels = JsonUtility.FromJson<Levels>(json);
         return levels;
     }
+    // créé une save vide si non existante
     public static void CreateSaveFile()
     {
         if (!System.IO.File.Exists(Application.persistentDataPath + "/Levels.json"))
