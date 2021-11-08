@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (Input.GetAxis("Cancel") == 1)
-            SceneManager.LoadScene("LevelChoice");
+            SceneManager.LoadScene("Main Menu");
         if(Input.GetAxis("Jump") == 1 && _jump == 1)
         {
             _rigidbody.velocity = new Vector3(0f, (float)System.Math.Sqrt(_jumpHeight * -2 * Physics.gravity.y), 0f);
