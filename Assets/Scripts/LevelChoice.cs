@@ -38,4 +38,8 @@ public class LevelChoice : MonoBehaviour
         string levelName = "Level" + level.ToString();
         SceneManager.LoadScene(levelName);
     }
+    public void ExitButton()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
 }
