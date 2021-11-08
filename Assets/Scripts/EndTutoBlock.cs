@@ -11,7 +11,7 @@ public class EndTutoBlock : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            Player.endTuto();
+            Player.win();
         }
     }
 }

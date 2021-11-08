@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -63,12 +64,20 @@ public class Player : MonoBehaviour
 
     public static void win()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single); // en attendant le système de sauvegarde et retour au Menu
+        string resultString = Regex.Match(SceneManager.GetActiveScene().name, @"\d+").Value;
+        int a = int.Parse(resultString);
+        Save.levels.list[a - 1].isFinished = true;
+        float chrono = Time.timeSinceLevelLoad;
+        if(chrono < Save.levels.list[a - 1].time)
+            Save.levels.list[a - 1].time = chrono;
+        Save.SaveIntoJson();
+        SceneManager.LoadScene("LevelChoice");
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single); // en attendant le système de sauvegarde et retour au Menu
     }
 
     public static void endTuto()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("Level2");
     }
 
     public static void dead()

@@ -25,7 +25,7 @@ public class LevelChoice : MonoBehaviour
                 GameObject button = level.transform.GetChild(0).gameObject;
                 button.GetComponent<Image>().color = Color.green;
                 GameObject time = level.transform.GetChild(1).gameObject;
-                time.transform.GetChild(0).gameObject.GetComponent<Text>().text = data.list[i].time;
+                time.transform.GetChild(0).gameObject.GetComponent<Text>().text = data.list[i].time.ToString() + "s";
                 time.SetActive(true);
                 i++;
             }

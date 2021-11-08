@@ -38,7 +38,7 @@ public class Level
 {
     public int id;
     public bool isFinished = false;
-    public string time = "00:00:000";
+    public float time = 9999999999f;
 }
 
 public class Levels
