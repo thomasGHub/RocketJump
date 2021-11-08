@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 //Code by Bryan
@@ -10,8 +11,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float _speed = 2f;
     [SerializeField] private float _jumpHeight = 1.25f;
-
-
+    public Text chrono;
     [System.NonSerialized] public static Rigidbody _rigidbody;
     [System.NonSerialized] public static Transform _transform;
     private float _jump = 1f;
@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
         _dir = (Input.GetAxis("Vertical") * transform.forward + Input.GetAxis("Horizontal") * transform.right);
         if (transform.position.y < -100)
             dead();
+        chrono.text = Time.timeSinceLevelLoad.ToString() + "s";
     }
 
     private void FixedUpdate()
