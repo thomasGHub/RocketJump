@@ -75,7 +75,6 @@ public class Player : MonoBehaviour
         Save.SaveIntoJson();
         Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("LevelChoice");
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single); // en attendant le système de sauvegarde et retour au Menu
     }
 
     public static void dead()
