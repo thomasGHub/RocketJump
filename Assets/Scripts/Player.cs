@@ -62,6 +62,8 @@ public class Player : MonoBehaviour
         }
     }
 
+
+    //Code by Mathis (Win)
     public static void win()
     {
         string resultString = Regex.Match(SceneManager.GetActiveScene().name, @"\d+").Value;
@@ -71,13 +73,9 @@ public class Player : MonoBehaviour
         if(chrono < Save.levels.list[a - 1].time)
             Save.levels.list[a - 1].time = chrono;
         Save.SaveIntoJson();
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("LevelChoice");
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single); // en attendant le système de sauvegarde et retour au Menu
-    }
-
-    public static void endTuto()
-    {
-        SceneManager.LoadScene("Level2");
     }
 
     public static void dead()
