@@ -17,6 +17,7 @@ public class LevelChoice : MonoBehaviour
     }
     private void Start()
     {
+        data = Save.LoadLevelsFromJson();
         int i = 0;
         foreach(var level in Levels)
         {
@@ -27,8 +28,8 @@ public class LevelChoice : MonoBehaviour
                 GameObject time = level.transform.GetChild(1).gameObject;
                 time.transform.GetChild(0).gameObject.GetComponent<Text>().text = data.list[i].time.ToString() + "s";
                 time.SetActive(true);
-                i++;
             }
+            i++;
         }
     }
 
